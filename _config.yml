@@ -1,30 +1,42 @@
 # --- Site settings -----------------------------------------------------------
-title: Fly Me To The Cloud
+title: Flymetothecloud.com
+tagline: "Cloud | IT Ops | Automation"
 email: ""
 description: >-
-  Cloud, Azure, and infrastructure notes — migrated from WordPress.
+  Cloud, Azure, and infrastructure notes by Dimitris Pantazis.
 url: "https://flymetothecloud.com"   # the custom domain (no trailing slash)
 baseurl: ""                           # empty for an apex/custom domain
+logo: /wp-content/uploads/2020/07/Drawing1.png
 
-# --- Theme -------------------------------------------------------------------
-# Minima is the default, blog-optimized GitHub Pages theme.
-theme: minima
-minima:
-  skin: auto            # light/dark aware
-  social_links: []
+# --- Author / Welcome widget -------------------------------------------------
+author:
+  name: Dimitris Pantazis
+  photo: /wp-content/uploads/2020/07/4e04b5mkxet5jnstifwa_400x400.png
+  bio: >-
+    My name is Dimitris Pantazis and I work as a Cloud Solution Architect at
+    Microsoft, focusing on Infrastructure services.
+    I am based in Athens, Greece.
 
-# --- Permalinks --------------------------------------------------------------
-# IMPORTANT: set this to EXACTLY match your old WordPress permalink structure so
-# existing links and SEO rankings keep working. Confirm yours under
-# WordPress: Settings -> Permalinks.
-#
-# Common WordPress mappings:
-#   "Day and name"   -> /:year/:month/:day/:title/
-#   "Month and name" -> /:year/:month/:title/
-#   "Post name"      -> /:title/
-#   "Numeric"        -> /archives/:id     (needs per-post redirect)
-#
-# Default below assumes "Day and name". Adjust once you confirm.
+# --- Navigation --------------------------------------------------------------
+nav:
+  - title: About
+    url: /about/
+  - title: Presentations
+    url: /presentations/
+
+# --- Badges widget (certifications) ------------------------------------------
+badges:
+  - { img: /wp-content/uploads/2020/10/azure-solutions-architect-expert-600x600.png, alt: "Azure Solutions Architect Expert" }
+  - { img: /wp-content/uploads/2020/07/CERT-Expert-DevOps-Engineer-600x600-e1594275421423.png, alt: "DevOps Engineer Expert" }
+  - { img: /wp-content/uploads/2020/07/azure-administrator-associate-e1594275427884.png, alt: "Azure Administrator Associate" }
+  - { img: /wp-content/uploads/2020/07/microsoft365-messaging-administrator-associate-600x600-e1594275370883.png, alt: "M365 Messaging Administrator Associate" }
+  - { img: /wp-content/uploads/2020/07/microsoft365-fundamentals-600x600-e1594275387739.png, alt: "M365 Fundamentals" }
+  - { img: /wp-content/uploads/2020/07/MCT-MicrosoftCertifiedTrainer-e1594275394557.png, alt: "Microsoft Certified Trainer" }
+  - { img: /wp-content/uploads/2020/07/Core-Infrastructure-e1594275414142.png, alt: "MCSE Core Infrastructure" }
+  - { img: /wp-content/uploads/2020/07/MCSE-Productivity-2019-e1594275401476.png, alt: "MCSE Productivity" }
+  - { img: /wp-content/uploads/2020/07/MCSAWindowsServer2012-01-e1594275408595.png, alt: "MCSA Windows Server 2012" }
+
+# --- Permalinks (WordPress "Day and name") -----------------------------------
 permalink: /:year/:month/:day/:title/
 
 # --- Build settings ----------------------------------------------------------
@@ -54,3 +66,5 @@ exclude:
   - scripts
   - README.md
   - node_modules
+  - package.json
+  - package-lock.json

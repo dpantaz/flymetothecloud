@@ -1,0 +1,21 @@
+<header class="site-header">
+  <div class="header-inner">
+    <a class="site-logo" href="{{ '/' | relative_url }}">
+      {% if site.logo %}
+        <img src="{{ site.logo | relative_url }}" alt="{{ site.title }}">
+      {% else %}
+        <span class="site-logo-text">{{ site.title }}</span>
+      {% endif %}
+    </a>
+    {% if site.tagline %}<span class="site-tagline">{{ site.tagline }}</span>{% endif %}
+
+    <nav class="site-nav">
+      {% for item in site.nav %}
+        <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
+      {% endfor %}
+      <a class="nav-search" href="{{ '/search/' | relative_url }}" aria-label="Search" title="Search">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      </a>
+    </nav>
+  </div>
+</header>

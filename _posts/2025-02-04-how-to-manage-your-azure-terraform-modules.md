@@ -4,6 +4,7 @@ title: "How to Manage Your Azure Terraform Modules"
 date: 2025-02-04 21:14:00 +0000
 categories:
   - "Uncategorized"
+summary: "As cloud infrastructure grows more complex, managing your Terraform modules effectively is crucial to ensuring your Azure environment remains scalable, secure, and maintainable. Terraform's modular structure allows you to create reusable pieces of infrastructure code, but managing these modules at scale requires strategy and best"
 redirect_from:
   - "/2025/02/04/how-to-manage-your-azure-terraform-modules/"
 ---

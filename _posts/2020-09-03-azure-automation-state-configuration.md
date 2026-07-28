@@ -6,6 +6,8 @@ categories:
   - "Azure"
   - "DSC"
   - "PowerShell"
+image: "/wp-content/uploads/2020/07/image.png"
+summary: "In my first post I decided to talk about two technologies which, when combined, can give you a lot of power managing your VMs in the cloud."
 redirect_from:
   - "/2020/09/03/azure-automation-state-configuration/"
 ---

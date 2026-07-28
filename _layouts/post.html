@@ -1,0 +1,24 @@
+---
+layout: default
+---
+<article class="single-post">
+  <header class="single-header">
+    <h1 class="single-title">{{ page.title }}</h1>
+    <p class="card-meta">
+      {{ page.date | date: "%B %-d, %Y" }}
+      {% if page.tags and page.tags.size > 0 %} / {{ page.tags | join: ", " }}{% endif %}
+    </p>
+  </header>
+
+  <div class="single-content">
+    {{ content }}
+  </div>
+
+  {% if page.tags and page.tags.size > 0 %}
+  <footer class="single-tags">
+    {% for tag in page.tags %}
+      <a class="tag-pill" href="{{ '/tags/' | relative_url }}#{{ tag | slugify }}">{{ tag }}</a>
+    {% endfor %}
+  </footer>
+  {% endif %}
+</article>

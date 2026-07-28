@@ -1,0 +1,39 @@
+<aside class="sidebar">
+
+  {% if site.author %}
+  <section class="widget widget-welcome">
+    <h3 class="widget-title">Welcome!</h3>
+    <div class="welcome-body">
+      {% if site.author.photo %}<img class="welcome-photo" src="{{ site.author.photo | relative_url }}" alt="{{ site.author.name }}">{% endif %}
+      <p>{{ site.author.bio }}</p>
+    </div>
+  </section>
+  {% endif %}
+
+  {% if site.badges and site.badges.size > 0 %}
+  <section class="widget widget-badges">
+    <h3 class="widget-title">Badges</h3>
+    <div class="badge-grid">
+      {% for b in site.badges %}
+        <img src="{{ b.img | relative_url }}" alt="{{ b.alt }}" title="{{ b.alt }}">
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+
+  {% if site.tags.size > 0 %}
+  <section class="widget widget-tags">
+    <h3 class="widget-title">Tags</h3>
+    <div class="tag-cloud">
+      {% assign tags = site.tags | sort %}
+      {% for tag in tags %}
+        {% assign count = tag[1] | size %}
+        {% assign fs = count | times: 8 | plus: 85 | at_most: 135 %}
+        <a href="{{ '/tags/' | relative_url }}#{{ tag[0] | slugify }}"
+           class="tag-pill" style="font-size: {{ fs }}%">{{ tag[0] }}</a>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+
+</aside>

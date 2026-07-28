@@ -10,6 +10,8 @@ tags:
   - "iac"
   - "landing zones"
   - "terraform"
+image: "/wp-content/uploads/2022/10/Screenshot-2022-10-10-162951-1-1024x803.png"
+summary: "Find out how to initialize your Azure environment with documented best practices leveraging IaC benefits"
 redirect_from:
   - "/2022/10/12/start-your-azure-landing-zones-journey-with-terraform/"
 ---

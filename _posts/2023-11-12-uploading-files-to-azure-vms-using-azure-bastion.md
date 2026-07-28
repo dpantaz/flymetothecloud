@@ -11,6 +11,8 @@ tags:
   - "landing zones"
   - "network"
   - "ssh"
+image: "/wp-content/uploads/2023/11/image-1024x674.png"
+summary: "Hello there! Recently, I was working on an Azure project and one of my tasks involved a step where I had to upload some files to a Linux virtual machine. However, the environment was locked down and I did not have direct SSH access to"
 redirect_from:
   - "/2023/11/12/uploading-files-to-azure-vms-using-azure-bastion/"
 ---

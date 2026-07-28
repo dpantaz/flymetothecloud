@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+  {% if site.logo %}<link rel="icon" href="{{ site.logo | relative_url }}">{% endif %}
+  {% feed_meta %}
+  {% seo %}
+</head>
+<body>
+  {% include header.html %}
+
+  <div class="page-wrap">
+    <div class="container">
+      <main class="content">
+        {{ content }}
+      </main>
+      {% include sidebar.html %}
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <p>Copyright &copy; {{ 'now' | date: "%Y" }} {{ site.title }}</p>
+  </footer>
+</body>
+</html>

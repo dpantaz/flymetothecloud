@@ -204,6 +204,17 @@ async function main() {
     if (postType !== "post" && postType !== "page") { stats.skipped++; continue; }
 
     let content = localize(stripGutenberg(pick(item, "content:encoded")));
+    // derive card thumbnail (first image) and summary (first text) before wpautop
+    const firstImg = content.match(/<img[^>]+src="([^"]+)"/i);
+    const cardImage = firstImg ? firstImg[1] : null;
+    const wpExcerpt = pick(item, "excerpt:encoded");
+    const plainSource = (wpExcerpt && wpExcerpt.trim()) ? wpExcerpt : content;
+    const summary = plainSource
+      .replace(/<[^>]+>/g, " ")
+      .replace(/&nbsp;/g, " ")
+      .replace(/\s+/g, " ")
+      .trim()
+      .split(" ").slice(0, 45).join(" ");
     content = wpautop(content);
 
     const slug = name || slugify(title);
@@ -244,6 +255,8 @@ async function main() {
       ["categories", uniq(categories)],
       ["tags", uniq(tags)],
     ];
+    if (cardImage) fields.push(["image", yamlEscape(cardImage)]);
+    if (summary) fields.push(["summary", yamlEscape(summary)]);
     if (redirectPath) fields.push(["redirect_from", [redirectPath]]);
     const fm = buildFrontMatter(fields);
     const datePrefix = parsed ? `${parsed.y}-${pad(parsed.mo)}-${pad(parsed.d)}` : "1970-01-01";
