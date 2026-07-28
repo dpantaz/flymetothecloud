@@ -13,12 +13,12 @@ logo_dark: /wp-content/uploads/2020/07/Drawing1.png
 author:
   name: Dimitris Pantazis
   photo: /assets/img/author.png
-  bio: >-
-    My name is Dimitris Pantazis and I work as a Cloud Solution Architect at
-    Microsoft, focusing on Infrastructure services, specializing in Azure
-    Landing Zones, Terraform, Azure Governance, Security, and Enterprise
-    Automation.
-    I am based in Athens, Greece.
+  bio: |
+    I'm Dimitris Pantazis, a Cloud Solution Architect specializing in Azure Infrastructure, Landing Zones, Terraform, Governance, Security, and Enterprise Automation.
+
+    Through this blog, I share real-world guidance, implementation patterns, and lessons learned to help engineers and organizations build secure, scalable, and well-governed Azure environments.
+
+    Based in Athens, Greece.
   social:
     linkedin: https://www.linkedin.com/in/dpantaz/
     github: https://github.com/dpantaz

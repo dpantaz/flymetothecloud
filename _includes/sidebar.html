@@ -5,7 +5,7 @@
     <h3 class="widget-title">Welcome!</h3>
     <div class="welcome-body">
       {% if site.author.photo %}<img class="welcome-photo" src="{{ site.author.photo | relative_url }}" alt="{{ site.author.name }}">{% endif %}
-      <p>{{ site.author.bio }}</p>
+      <div class="welcome-bio">{{ site.author.bio | markdownify }}</div>
       {% if site.author.social %}
       <div class="welcome-social">
         {% if site.author.social.linkedin %}
