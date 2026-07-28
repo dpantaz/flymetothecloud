@@ -6,7 +6,8 @@ description: >-
   Cloud, Azure, and infrastructure notes by Dimitris Pantazis.
 url: "https://flymetothecloud.com"   # the custom domain (no trailing slash)
 baseurl: ""                           # empty for an apex/custom domain
-logo: /wp-content/uploads/2020/07/Drawing1.png
+logo: /assets/img/logo-white.png
+logo_dark: /wp-content/uploads/2020/07/Drawing1.png
 
 # --- Author / Welcome widget -------------------------------------------------
 author:
