@@ -8,7 +8,9 @@
   --navy: #2f4356;
   --ink: #33475b;
   --body: #5a6b7b;
-  --card-shadow: 0 1px 3px rgba(0, 0, 0, .12);
+  --card-shadow: 0 6px 18px rgba(16, 34, 48, .10);
+  --radius: 14px;
+  --radius-sm: 8px;
 }
 
 * { box-sizing: border-box; }
@@ -31,19 +33,41 @@ img { max-width: 100%; height: auto; }
 
 /* --- Header ---------------------------------------------------------------- */
 .site-header {
-  background: #fff;
-  border-bottom: 1px solid #ececec;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, .88);
+  backdrop-filter: saturate(160%) blur(10px);
+  -webkit-backdrop-filter: saturate(160%) blur(10px);
+  border-bottom: 1px solid rgba(27, 161, 197, .14);
+  box-shadow: 0 1px 0 rgba(16, 34, 48, .02);
+  transition: box-shadow .25s ease, background .25s ease;
+}
+/* teal accent line along the top edge */
+.site-header::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--teal), #4fc3df 55%, var(--navy));
+}
+.site-header.scrolled {
+  background: rgba(255, 255, 255, .96);
+  box-shadow: 0 8px 24px rgba(16, 34, 48, .12);
 }
 .header-inner {
   max-width: 1080px;
   margin: 0 auto;
-  padding: 18px 20px;
+  padding: 16px 20px;
   display: flex;
   align-items: center;
   gap: 18px;
+  transition: padding .25s ease;
 }
+.site-header.scrolled .header-inner { padding: 8px 20px; }
 .site-logo { display: inline-flex; align-items: center; flex: 0 0 auto; }
-.site-logo img { height: 60px; width: auto; }
+.site-logo img { height: 58px; width: auto; transition: height .25s ease; }
+.site-header.scrolled .site-logo img { height: 40px; }
 .site-logo-text { font-family: "Raleway", sans-serif; font-size: 26px; font-weight: 600; color: var(--navy); }
 .site-tagline {
   color: var(--navy);
@@ -51,12 +75,17 @@ img { max-width: 100%; height: auto; }
   font-weight: 400;
   font-size: 15px;
   letter-spacing: .3px;
+  padding-left: 16px;
+  margin-left: 2px;
+  border-left: 2px solid rgba(27, 161, 197, .35);
+  transition: opacity .2s ease;
 }
+.site-header.scrolled .site-tagline { opacity: 0; }
 .site-nav {
   margin-left: auto;
   display: flex;
   align-items: center;
-  gap: 22px;
+  gap: 8px;
 }
 .site-nav a {
   color: var(--navy);
@@ -64,9 +93,21 @@ img { max-width: 100%; height: auto; }
   font-weight: 500;
   font-size: 14px;
   text-transform: capitalize;
+  padding: 7px 12px;
+  border-radius: 999px;
+  transition: color .15s ease, background .15s ease;
 }
-.site-nav a:hover { color: var(--teal); text-decoration: none; }
-.nav-search { display: inline-flex; align-items: center; color: var(--navy); }
+.site-nav a:hover { color: var(--teal-dark); background: rgba(27, 161, 197, .10); text-decoration: none; }
+.nav-search {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  color: var(--navy);
+  border-radius: 50%;
+}
+.nav-search:hover { color: var(--teal-dark); background: rgba(27, 161, 197, .10); }
 
 /* --- Layout ---------------------------------------------------------------- */
 .page-wrap { padding: 40px 20px; }
@@ -86,6 +127,12 @@ img { max-width: 100%; height: auto; }
   box-shadow: var(--card-shadow);
   margin-bottom: 30px;
   overflow: hidden;
+  border-radius: var(--radius);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.post-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 30px rgba(16, 34, 48, .16);
 }
 .card-image { display: block; }
 .card-image img { display: block; width: 100%; }
@@ -120,6 +167,7 @@ img { max-width: 100%; height: auto; }
   background: #fff;
   box-shadow: var(--card-shadow);
   padding: 34px 40px 40px;
+  border-radius: var(--radius);
 }
 .single-title {
   margin: 0 0 10px;
@@ -173,6 +221,7 @@ img { max-width: 100%; height: auto; }
   box-shadow: var(--card-shadow);
   padding: 20px 22px 24px;
   margin-bottom: 26px;
+  border-radius: var(--radius);
 }
 .widget-title {
   margin: 0 0 16px;
@@ -188,6 +237,7 @@ img { max-width: 100%; height: auto; }
   height: 88px;
   object-fit: cover;
   margin: 0 14px 8px 0;
+  border-radius: var(--radius-sm);
 }
 .welcome-body p { margin: 0; font-size: 13.5px; }
 

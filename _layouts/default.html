@@ -26,5 +26,16 @@
   <footer class="site-footer">
     <p>Copyright &copy; {{ 'now' | date: "%Y" }} {{ site.title }}</p>
   </footer>
+  <script>
+    (function () {
+      var header = document.querySelector('.site-header');
+      if (!header) return;
+      var onScroll = function () {
+        header.classList.toggle('scrolled', window.scrollY > 40);
+      };
+      onScroll();
+      window.addEventListener('scroll', onScroll, { passive: true });
+    })();
+  </script>
 </body>
 </html>
