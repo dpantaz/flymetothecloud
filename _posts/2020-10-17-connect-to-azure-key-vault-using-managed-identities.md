@@ -7,7 +7,7 @@ categories:
   - "Azure Active Directory"
   - "Key Vault"
   - "PowerShell"
-image: "/wp-content/uploads/2020/10/Screen-Shot-2020-10-17-at-09.29.32.png"
+image: "/wp-content/uploads/2020/10/Screen-Shot-2020-10-17-at-23.51.58-1.png"
 summary: "Follow me to discover how we can use Azure Key Vault and system-assigned managed identities in order to stop saving username and passwords with our code."
 redirect_from:
   - "/2020/10/17/connect-to-azure-key-vault-using-managed-identities/"
