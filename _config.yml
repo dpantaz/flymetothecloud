@@ -12,7 +12,7 @@ logo_dark: /wp-content/uploads/2020/07/Drawing1.png
 # --- Author / Welcome widget -------------------------------------------------
 author:
   name: Dimitris Pantazis
-  photo: /wp-content/uploads/2020/07/4e04b5mkxet5jnstifwa_400x400.png
+  photo: /assets/img/author.png
   bio: >-
     My name is Dimitris Pantazis and I work as a Cloud Solution Architect at
     Microsoft, focusing on Infrastructure services.
