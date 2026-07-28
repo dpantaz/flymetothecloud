@@ -15,7 +15,7 @@ author:
   role: Cloud Solution Architect
   photo: /assets/img/author.png
   bio: |
-    Specializing in Azure Infrastructure, Landing Zones, Terraform, Governance, Security, and Enterprise Automation.
+    Specializing in Azure Landing Zones, Terraform, Governance, Security, and Automation.
 
     Through this blog, I share real-world guidance, implementation patterns, and lessons learned to help engineers and organizations build secure, scalable, and well-governed Azure environments.
   location: Athens, Greece

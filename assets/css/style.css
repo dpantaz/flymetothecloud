@@ -290,7 +290,7 @@ img { max-width: 100%; height: auto; }
 .welcome-name {
   margin: 0;
   font-family: var(--font-head);
-  font-size: 23px;
+  font-size: 26px;
   font-weight: 600;
   color: var(--ink);
   letter-spacing: -.015em;
