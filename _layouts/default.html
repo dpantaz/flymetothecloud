@@ -37,5 +37,23 @@
       window.addEventListener('scroll', onScroll, { passive: true });
     })();
   </script>
+  <script>
+    (function () {
+      document.querySelectorAll('.yt-embed').forEach(function (el) {
+        el.addEventListener('click', function (e) {
+          e.preventDefault();
+          var id = el.getAttribute('data-id');
+          if (!id) return;
+          var iframe = document.createElement('iframe');
+          iframe.setAttribute('src', 'https://www.youtube.com/embed/' + id + '?autoplay=1&rel=0');
+          iframe.setAttribute('title', 'YouTube video player');
+          iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
+          iframe.setAttribute('allowfullscreen', '');
+          el.innerHTML = '';
+          el.appendChild(iframe);
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
