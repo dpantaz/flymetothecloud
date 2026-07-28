@@ -8,6 +8,7 @@
   --navy: #2f4356;
   --ink: #33475b;
   --body: #5a6b7b;
+  --page-bg: #f4f6f9;
   --card-shadow: 0 6px 18px rgba(16, 34, 48, .10);
   --radius: 14px;
   --radius-sm: 8px;
@@ -19,7 +20,7 @@ html { -webkit-text-size-adjust: 100%; }
 
 body {
   margin: 0;
-  background: var(--teal);
+  background: var(--page-bg);
   color: var(--body);
   font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   font-size: 15px;
@@ -122,6 +123,7 @@ img { max-width: 100%; height: auto; }
 .post-card {
   background: #fff;
   box-shadow: var(--card-shadow);
+  border: 1px solid rgba(16, 34, 48, .06);
   margin-bottom: 30px;
   overflow: hidden;
   border-radius: var(--radius);
@@ -163,6 +165,7 @@ img { max-width: 100%; height: auto; }
 .single-post {
   background: #fff;
   box-shadow: var(--card-shadow);
+  border: 1px solid rgba(16, 34, 48, .06);
   padding: 34px 40px 40px;
   border-radius: var(--radius);
 }
@@ -254,6 +257,7 @@ img { max-width: 100%; height: auto; }
 .widget {
   background: #fff;
   box-shadow: var(--card-shadow);
+  border: 1px solid rgba(16, 34, 48, .06);
   padding: 20px 22px 24px;
   margin-bottom: 26px;
   border-radius: var(--radius);
