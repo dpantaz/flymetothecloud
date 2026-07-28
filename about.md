@@ -4,7 +4,7 @@ title: "About"
 permalink: /about/
 ---
 
-<figure class="wp-block-image is-resized"><img src="/wp-content/uploads/2020/09/viber_image_2020-09-03_15-18-51-2-1024x448.jpg" alt="" class="wp-image-168" style="width:1169px;height:511px"/></figure>
+<figure class="wp-block-image is-resized"><img src="/assets/img/about-speaking.jpg" alt="Dimitris Pantazis presenting" class="wp-image-168" style="width:100%;height:auto"/></figure>
 
 <p></p>
 
