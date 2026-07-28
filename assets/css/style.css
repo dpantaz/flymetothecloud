@@ -122,7 +122,7 @@ img { max-width: 100%; height: auto; }
   gap: 30px;
 }
 .content { flex: 1 1 auto; min-width: 0; }
-.sidebar { flex: 0 0 300px; }
+.sidebar { flex: 0 0 330px; }
 
 /* --- Post cards ------------------------------------------------------------ */
 .post-card {
@@ -275,7 +275,7 @@ img { max-width: 100%; height: auto; }
   font-size: 18px;
   color: var(--ink);
 }
-.widget-welcome { padding: 26px 24px 28px; }
+.widget-welcome { padding: 26px 20px 28px; }
 .welcome-body { text-align: center; }
 .welcome-photo {
   display: block;
@@ -290,10 +290,11 @@ img { max-width: 100%; height: auto; }
 .welcome-name {
   margin: 0;
   font-family: var(--font-head);
-  font-size: 19px;
+  font-size: 23px;
   font-weight: 600;
   color: var(--ink);
-  letter-spacing: -.01em;
+  letter-spacing: -.015em;
+  line-height: 1.2;
 }
 .welcome-role {
   margin: 2px 0 14px;
@@ -312,7 +313,6 @@ img { max-width: 100%; height: auto; }
   color: var(--body);
   letter-spacing: .2px;
 }
-.welcome-body p { margin: 0; font-size: 13.5px; }
 .welcome-social {
   display: flex;
   justify-content: center;
