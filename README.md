@@ -26,8 +26,12 @@ node scripts\wxr_to_jekyll.mjs `
 ```
 
 This creates `_posts/YYYY-MM-DD-slug.md` files with front matter (title, date,
-categories, tags, `redirect_from`), localizes media into `assets/images/`, and
-rewrites in-content media URLs. Add `--drafts` to also emit drafts.
+categories, tags, `redirect_from`), strips Gutenberg block comments, downloads
+all referenced media **preserving the original `/wp-content/uploads/...` paths**
+(so existing image tags keep working with no rewriting), and rewrites any
+absolute media URLs to site-root-relative paths. Add `--drafts` to also emit
+drafts. `--media-base` (defaults to the first `--old-domain`) is the origin the
+downloader fetches media from.
 
 ## Preview locally (needs Ruby + Bundler)
 

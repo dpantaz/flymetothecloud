@@ -26,18 +26,19 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 function parseArgs(argv) {
-  const args = { input: null, output: ".", drafts: false, downloadMedia: false, mediaDir: "assets/images", oldDomains: [] };
+  const args = { input: null, output: ".", drafts: false, downloadMedia: false, mediaBase: null, oldDomains: [] };
   for (let i = 2; i < argv.length; i++) {
     const a = argv[i];
     if (a === "--input") args.input = argv[++i];
     else if (a === "--output") args.output = argv[++i];
     else if (a === "--drafts") args.drafts = true;
     else if (a === "--download-media") args.downloadMedia = true;
-    else if (a === "--media-dir") args.mediaDir = argv[++i];
+    else if (a === "--media-base") args.mediaBase = argv[++i];
     else if (a === "--old-domain") args.oldDomains.push(argv[++i]);
     else { console.error(`Unknown arg: ${a}`); process.exit(2); }
   }
   if (!args.input) { console.error("ERROR: --input <export.xml> is required"); process.exit(2); }
+  if (!args.mediaBase && args.oldDomains.length) args.mediaBase = args.oldDomains[0];
   return args;
 }
 
@@ -64,6 +65,12 @@ function parseDate(raw) {
 
 const BLOCK_RE = /^\s*<\/?(?:p|div|ul|ol|li|table|thead|tbody|tr|td|th|blockquote|pre|h[1-6]|figure|figcaption|hr|iframe|img|script|style|section|article|header|footer|aside|nav|form)\b/i;
 
+// Remove Gutenberg block-editor delimiters like <!-- wp:paragraph --> and
+// <!-- /wp:list -->, but keep the WordPress <!--more--> excerpt marker.
+function stripGutenberg(content) {
+  return (content || "").replace(/<!--\s*\/?wp:[^>]*?-->/g, "");
+}
+
 function wpautop(content) {
   if (!content) return "";
   content = content.replace(/\r\n/g, "\n").replace(/\r/g, "\n");
@@ -84,12 +91,14 @@ function yamlEscape(v) {
 
 function pad(n) { return String(n).padStart(2, "0"); }
 
-function localMediaPath(url, mediaDir) {
-  let name;
-  try { name = decodeURIComponent(path.basename(new URL(url).pathname)); }
-  catch { name = path.basename(url.split("?")[0]) || "file"; }
-  name = name.replace(/[^A-Za-z0-9._-]+/g, "-");
-  return `${mediaDir.replace(/\/+$/,"")}/${name}`;
+// Turn any media reference into a site-root-relative path we preserve on disk,
+// e.g. "https://site.com/wp-content/uploads/2020/07/image.png" or
+// "/wp-content/uploads/2020/07/image.png" -> "wp-content/uploads/2020/07/image.png".
+function toRelMediaPath(ref) {
+  let p;
+  try { p = new URL(ref).pathname; } catch { p = ref.split(/[?#]/)[0]; }
+  try { p = decodeURIComponent(p); } catch { /* keep raw */ }
+  return p.replace(/^\/+/, "");
 }
 
 const MEDIA_EXT = /\.(png|jpe?g|gif|webp|svg|pdf|zip|mp4|mp3|docx?|pptx?)$/i;
@@ -138,7 +147,7 @@ async function main() {
   const draftsDir = path.join(args.output, "_drafts");
   fs.mkdirSync(postsDir, { recursive: true });
 
-  const mediaUrls = new Set();
+  const mediaPaths = new Set();
   const stats = { post: 0, page: 0, draft: 0, skipped: 0, media: 0 };
 
   function pick(node, key) {
@@ -148,14 +157,30 @@ async function main() {
     return String(v);
   }
 
-  function localize(content) {
+  function collectMedia(str) {
+    if (!str) return;
+    // absolute references under one of the old domains
     for (const dom of args.oldDomains) {
-      const re = new RegExp(dom.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "[^\\s\"'<>\\)]+", "g");
-      const urls = new Set(content.match(re) || []);
-      for (const url of urls) {
-        if (MEDIA_EXT.test(url)) {
-          mediaUrls.add(url);
-          content = content.split(url).join("/" + localMediaPath(url, args.mediaDir));
+      const re = new RegExp(dom.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "/[^\\s\"'<>\\)]+", "g");
+      for (const url of new Set(str.match(re) || [])) {
+        if (MEDIA_EXT.test(url.split(/[?#]/)[0])) mediaPaths.add(toRelMediaPath(url));
+      }
+    }
+    // root-relative references, e.g. /wp-content/uploads/...
+    for (const url of new Set(str.match(/\/wp-content\/[^\s"'<>\)]+/g) || [])) {
+      if (MEDIA_EXT.test(url.split(/[?#]/)[0])) mediaPaths.add(toRelMediaPath(url));
+    }
+  }
+
+  // Rewrite absolute old-domain media URLs in post bodies down to site-root-
+  // relative paths (which we preserve on disk). Root-relative refs already work.
+  function localize(content) {
+    collectMedia(content);
+    for (const dom of args.oldDomains) {
+      const re = new RegExp(dom.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "/[^\\s\"'<>\\)]+", "g");
+      for (const url of new Set(content.match(re) || [])) {
+        if (MEDIA_EXT.test(url.split(/[?#]/)[0])) {
+          content = content.split(url).join("/" + toRelMediaPath(url));
         }
       }
     }
@@ -173,12 +198,12 @@ async function main() {
 
     if (postType === "attachment") {
       const att = pick(item, "wp:attachment_url");
-      if (att) mediaUrls.add(att);
+      if (att && MEDIA_EXT.test(att.split(/[?#]/)[0])) mediaPaths.add(toRelMediaPath(att));
       continue;
     }
     if (postType !== "post" && postType !== "page") { stats.skipped++; continue; }
 
-    let content = localize(pick(item, "content:encoded"));
+    let content = localize(stripGutenberg(pick(item, "content:encoded")));
     content = wpautop(content);
 
     const slug = name || slugify(title);
@@ -229,14 +254,19 @@ async function main() {
     fs.writeFileSync(outPath, fm + "\n\n" + content + "\n");
   }
 
-  if (args.downloadMedia && mediaUrls.size) {
-    const mediaDirAbs = path.join(args.output, args.mediaDir);
-    fs.mkdirSync(mediaDirAbs, { recursive: true });
-    for (const url of [...mediaUrls].sort()) {
-      const dest = path.join(args.output, localMediaPath(url, args.mediaDir));
-      if (fs.existsSync(dest)) continue;
-      try { await downloadFile(url, dest); stats.media++; }
-      catch (e) { console.error(`  ! media failed: ${url} (${e.message})`); }
+  if (args.downloadMedia && mediaPaths.size) {
+    if (!args.mediaBase) {
+      console.error("  ! --download-media needs --media-base or --old-domain to resolve URLs");
+    } else {
+      const base = args.mediaBase.replace(/\/+$/, "");
+      for (const rel of [...mediaPaths].sort()) {
+        const dest = path.join(args.output, rel);
+        if (fs.existsSync(dest)) { continue; }
+        fs.mkdirSync(path.dirname(dest), { recursive: true });
+        const url = base + "/" + rel;
+        try { await downloadFile(url, dest); stats.media++; }
+        catch (e) { console.error(`  ! media failed: ${url} (${e.message})`); }
+      }
     }
   }
 
@@ -244,7 +274,7 @@ async function main() {
   console.log(`  posts:   ${stats.post}`);
   console.log(`  pages:   ${stats.page}`);
   console.log(`  drafts:  ${stats.draft}`);
-  console.log(`  media:   ${stats.media} downloaded (${mediaUrls.size} referenced)`);
+  console.log(`  media:   ${stats.media} downloaded (${mediaPaths.size} referenced)`);
   console.log(`  skipped: ${stats.skipped}`);
 }
 
