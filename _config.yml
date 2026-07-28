@@ -1,0 +1,56 @@
+# --- Site settings -----------------------------------------------------------
+title: Fly Me To The Cloud
+email: ""
+description: >-
+  Cloud, Azure, and infrastructure notes — migrated from WordPress.
+url: "https://flymetothecloud.com"   # the custom domain (no trailing slash)
+baseurl: ""                           # empty for an apex/custom domain
+
+# --- Theme -------------------------------------------------------------------
+# Minima is the default, blog-optimized GitHub Pages theme.
+theme: minima
+minima:
+  skin: auto            # light/dark aware
+  social_links: []
+
+# --- Permalinks --------------------------------------------------------------
+# IMPORTANT: set this to EXACTLY match your old WordPress permalink structure so
+# existing links and SEO rankings keep working. Confirm yours under
+# WordPress: Settings -> Permalinks.
+#
+# Common WordPress mappings:
+#   "Day and name"   -> /:year/:month/:day/:title/
+#   "Month and name" -> /:year/:month/:title/
+#   "Post name"      -> /:title/
+#   "Numeric"        -> /archives/:id     (needs per-post redirect)
+#
+# Default below assumes "Day and name". Adjust once you confirm.
+permalink: /:year/:month/:day/:title/
+
+# --- Build settings ----------------------------------------------------------
+markdown: kramdown
+highlighter: rouge
+timezone: Etc/UTC
+
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+  - jekyll-redirect-from
+
+# --- Defaults ----------------------------------------------------------------
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+      comments: false
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - scripts
+  - README.md
+  - node_modules
