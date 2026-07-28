@@ -12,13 +12,13 @@ logo_dark: /wp-content/uploads/2020/07/Drawing1.png
 # --- Author / Welcome widget -------------------------------------------------
 author:
   name: Dimitris Pantazis
+  role: Cloud Solution Architect
   photo: /assets/img/author.png
   bio: |
-    I'm Dimitris Pantazis, a Cloud Solution Architect specializing in Azure Infrastructure, Landing Zones, Terraform, Governance, Security, and Enterprise Automation.
+    Specializing in Azure Infrastructure, Landing Zones, Terraform, Governance, Security, and Enterprise Automation.
 
     Through this blog, I share real-world guidance, implementation patterns, and lessons learned to help engineers and organizations build secure, scalable, and well-governed Azure environments.
-
-    Based in Athens, Greece.
+  location: Athens, Greece
   social:
     linkedin: https://www.linkedin.com/in/dpantaz/
     github: https://github.com/dpantaz
