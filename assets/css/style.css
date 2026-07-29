@@ -345,10 +345,11 @@ img { max-width: 100%; height: auto; }
 
 .badge-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px 14px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px 18px;
   align-items: center;
-  padding: 2px 8px;
+  justify-items: center;
+  padding: 4px 14px;
 }
 .badge-grid img {
   width: 100%;
