@@ -379,6 +379,13 @@ img { max-width: 100%; height: auto; }
   font-size: 13px;
 }
 .site-footer p { margin: 0; }
+.footer-colophon {
+  margin-top: 6px !important;
+  font-size: 12px;
+  color: rgba(199, 210, 220, .6);
+}
+.footer-colophon a { color: rgba(199, 210, 220, .85); text-decoration: none; }
+.footer-colophon a:hover { color: #fff; text-decoration: underline; }
 
 /* --- Responsive ------------------------------------------------------------ */
 @media (max-width: 820px) {
