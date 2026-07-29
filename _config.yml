@@ -34,13 +34,7 @@ nav:
 badges:
   - { img: /wp-content/uploads/2020/10/azure-solutions-architect-expert-600x600.png, alt: "Azure Solutions Architect Expert" }
   - { img: /wp-content/uploads/2020/07/CERT-Expert-DevOps-Engineer-600x600-e1594275421423.png, alt: "DevOps Engineer Expert" }
-  - { img: /wp-content/uploads/2020/07/azure-administrator-associate-e1594275427884.png, alt: "Azure Administrator Associate" }
-  - { img: /wp-content/uploads/2020/07/microsoft365-messaging-administrator-associate-600x600-e1594275370883.png, alt: "M365 Messaging Administrator Associate" }
-  - { img: /wp-content/uploads/2020/07/microsoft365-fundamentals-600x600-e1594275387739.png, alt: "M365 Fundamentals" }
-  - { img: /wp-content/uploads/2020/07/MCT-MicrosoftCertifiedTrainer-e1594275394557.png, alt: "Microsoft Certified Trainer" }
-  - { img: /wp-content/uploads/2020/07/Core-Infrastructure-e1594275414142.png, alt: "MCSE Core Infrastructure" }
-  - { img: /wp-content/uploads/2020/07/MCSE-Productivity-2019-e1594275401476.png, alt: "MCSE Productivity" }
-  - { img: /wp-content/uploads/2020/07/MCSAWindowsServer2012-01-e1594275408595.png, alt: "MCSA Windows Server 2012" }
+  - { img: /assets/img/mct-certified-trainer-2026.png, alt: "Microsoft Certified Trainer 2026" }
 
 # --- Permalinks (WordPress "Day and name") -----------------------------------
 permalink: /:year/:month/:day/:title/
