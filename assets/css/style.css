@@ -121,7 +121,7 @@ img { max-width: 100%; height: auto; }
   align-items: flex-start;
   gap: 30px;
 }
-.content { flex: 1 1 auto; min-width: 0; }
+.content { flex: 1 1 auto; min-width: 0; max-width: 100%; }
 .sidebar { flex: 0 0 330px; }
 
 /* --- Post cards ------------------------------------------------------------ */
@@ -173,6 +173,7 @@ img { max-width: 100%; height: auto; }
   border: 1px solid rgba(16, 34, 48, .06);
   padding: 34px 40px 40px;
   border-radius: var(--radius);
+  max-width: 100%;
 }
 .single-title {
   margin: 0 0 10px;
@@ -184,7 +185,7 @@ img { max-width: 100%; height: auto; }
   text-transform: uppercase;
   color: var(--ink);
 }
-.single-content { color: #444; }
+.single-content { color: #444; max-width: 100%; min-width: 0; }
 .single-content h1, .single-content h2, .single-content h3, .single-content h4 {
   font-family: var(--font-head);
   color: var(--ink);
@@ -194,6 +195,7 @@ img { max-width: 100%; height: auto; }
   margin: 1.7em 0 .6em;
 }
 .single-content p { margin: 0 0 1.6em; }
+.single-content p, .single-content li, .single-content a { overflow-wrap: anywhere; }
 .single-content img { margin: 12px 0; }
 .single-content figure { margin: 18px 0; }
 .single-content figure img { display: block; }
@@ -206,7 +208,8 @@ img { max-width: 100%; height: auto; }
   background: #1e2733;
   color: #e6edf3;
   padding: 16px 18px;
-  overflow: auto;
+  overflow-x: auto;
+  max-width: 100%;
   border-radius: 4px;
 }
 .single-content code { background: #eef2f5; padding: 1px 5px; border-radius: 3px; }
