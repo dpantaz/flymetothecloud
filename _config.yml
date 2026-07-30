@@ -33,7 +33,7 @@ nav:
 # --- Badges widget (certifications) ------------------------------------------
 badges:
   - { img: /wp-content/uploads/2020/10/azure-solutions-architect-expert-600x600.png, alt: "Azure Solutions Architect Expert" }
-  - { img: /wp-content/uploads/2020/07/CERT-Expert-DevOps-Engineer-600x600-e1594275421423.png, alt: "DevOps Engineer Expert" }
+  - { img: /assets/img/devops-engineer-expert.png, alt: "DevOps Engineer Expert" }
   - { img: /assets/img/mct-certified-trainer-2026.png, alt: "Microsoft Certified Trainer 2026" }
   - { img: /assets/img/mvp-2024.png, alt: "Microsoft MVP 2024" }
 
